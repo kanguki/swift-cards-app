@@ -7,15 +7,17 @@
 
 import SwiftUI
 
+let numberOfPlayers = 4
 struct ContentView: View {
+    @State var rowValues = [Array(repeating: 1, count: numberOfPlayers)]
+    @State var scrollToRow = 0
+    @State var sums = Array(repeating: 0, count: numberOfPlayers)
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        VStack{
+            HeaderPlayers(sums: $sums)
+            FunctionalButtons(rowValues: $rowValues, scrollToRow: $scrollToRow, sums: $sums)
+            Rounds(rowValues: $rowValues, scrollToRow: $scrollToRow)
+        }  
     }
 }
 
